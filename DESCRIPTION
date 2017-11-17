@@ -1,0 +1,13 @@
+Package: NCDBR
+Title: Tools for NCDB Analyses in R
+Version: 0.1
+Date: 2017-11-12
+Author: Sophia Jia
+Description: Makes National Cancer Database (NCDB) R binaries.      
+Maintainer: Sophia Jia <jiax@ccf.org>
+License: GPL (>= 2)
+Imports: tibble,stringi, LaF, dplyr, labelled
+LazyData: yes
+RoxygenNote: 6.0.1
+NeedsCompilation: no
+Packaged: 2017-11-13 12:56:19 UTC; radivot
