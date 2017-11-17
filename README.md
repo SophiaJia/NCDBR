@@ -3,4 +3,4 @@ Makes National Cancer Database (NCDB) R binaries
 
 To install:
 
-* the latest development version: `devtools::install_github("SophiaJia/Jsurvformat")`
+* the latest development version: `devtools::install_github("SophiaJia/NCDBR")`
