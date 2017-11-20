@@ -1,7 +1,8 @@
 #' Get Field Info in SAS File
 #' 
 #' The NCDB data comes with a .sas file that helps SAS users. Here \code{getFields()} parses that 
-#' .sas file to create a tibble with information about field start and stop postions and factor levels.  
+#' .sas file to create a tibble with information about field start and stop postions and factor levels.
+#' This tibble is then the input into \code{pickFields()}.  
 
 #'@return  
 #' Tibble with short names (\code{nms}, which contain lower case letters if shortened), 
