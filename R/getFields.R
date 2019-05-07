@@ -10,8 +10,9 @@
 #' column object attributes in the output of \code{mkNCDB()}], and a list column \code{Levs} where factor rows contain tibbles  
 #' whose n column holds factor numbers and val column holds string labels to which they map.
 
-#'@note   The sas file needed manual editing to remove foreign characters at lines
-#'548, 660-662, and  698.   The fixed version is in the \file{extdata} folder.
+#'@note   The 2013 sas file needed manual editing to remove foreign characters at lines
+#'548, 660-662, and  698.  Use library(tools); showNonASCIIfile() to nonascii of 2016 file.
+#'Fixed versions are in the \file{extdata} folder.
 #'Inspired by a function of the same name in \pkg{SEERaBomb}.
 
 #'@examples
@@ -20,15 +21,24 @@
 #'@export
 #'@name getFields
 
-getFields<-function(){
+getFields<-function(year=2016){
+  # year=2016
+  # year=2013
+  if (year==2016) {
+  sas=readLines(system.file("extdata", "NCDB_PUF_Labels_2016fixed.sas", package = "NCDBR")) 
+  top=8  
+  } else {
   sas=readLines(system.file("extdata", "NCDB_PUF_Labels_2013fixed.sas", package = "NCDBR"))
+  top=20  
+  }
   # sas=readLines(system.file("extdata", "NCDB_PUF_Labels_2013.sas", package = "NCDBR")) #to see rows causing probs
-  nS=sas[20] #n in a String
-  (nS=stringi::stri_extract_first_regex(nS, "[0-9]+"))
+  nS=sas[top] #n in a String
+  nS=stringi::stri_extract_last_regex(nS, "[0-9]+")
+  # (nS=stringi::stri_extract_first_regex(nS, "[0-9]+\\;$"))
   (n=as.numeric(nS))
   # sas=sas[-c(1:21)]
   (k=max(grep(nS,sas))) #you must manually remove ~5 invalid locales from the .sas file
-  sa=sas[22:k]
+  if (year==2016) sa=sas[11:k] else sa=sas[22:k] 
   # sa=sas[1:k]
   type=rep("integer",length(sa))
   type[grep("$",sa,fixed=T)]="string"
@@ -56,8 +66,9 @@ getFields<-function(){
   # next lets get the levels of factors
   (ks=grep("COMMENT PUF Data Item Name",sas))
   strt=ks+2
-  (kEnd=grep("PROC FREQ",sas))
-  ends=c(ks[-1]-1,kEnd-4)
+  (kEnd=grep("RUN",sas)[3])
+  # (kEnd=grep("PROC FREQ",sas))
+  if (year==2013) ends=c(ks[-1]-1,kEnd-1) else  ends=c(ks[-1]-1,kEnd-2)
   cbind(ks,strt,ends)
   # clean up some stuff in advance
   N=length(strt)
@@ -87,8 +98,15 @@ getFields<-function(){
   firsts=sapply(L, function(x) x[1])
   secs=sapply(L, function(x) x[2])
   fnms[k]=firsts
+  if (year==2013){
   (fnmS=c(fnms[1:k[1]],secs[1],fnms[(k[1]+1):k[2]],secs[2],fnms[k[2]+1],secs[3],
           fnms[k[3]+1],secs[4],fnms[(k[4]+1):k[5]],secs[5],fnms[(k[5]+1):length(fnms)]))
+  } else
+  (fnmS=c(fnms[1:k[1]],secs[1],fnms[(k[1]+1):k[2]],secs[2],fnms[k[2]+1],secs[3],
+          fnms[k[3]+1],secs[4],fnms[(k[4]+1):k[5]],secs[5],fnms[(k[5]+1):k[6]],
+          fnms[k[6]+1],secs[7],fnms[(k[7]+1):k[8]],secs[8],fnms[(k[8]+1):k[9]],
+          fnms[k[9]+1],secs[10],fnms[(k[10]+1):k[11]],secs[11],fnms[(k[11]+1):length(fnms)]))
+  
   fnmS[k+0:(length(k)-1)]
   setdiff(fnmS,names) #all there, check
   #now get the factor level strings and place into lists
