@@ -20,6 +20,9 @@ pickFields<-function(d,picks=c("casenum","facID","fac","facLoc","agedx","sex","r
                                "ins","inc","educ","urban","crow","charlson","seqnum",
                                "CoC","yrdx","histo3","stage","d2t","radiatn","d2c",
                                "chemo","hct","surv","alive")    )  {
+  # library(tidyverse)
+  # library(NCDBR)
+  # d=getFields()
   # head(d,3)
   nms=NULL #kill check warning that arises 3 line downs
   (nBytesP1=sum(d$width)+1)
@@ -33,6 +36,8 @@ pickFields<-function(d,picks=c("casenum","facID","fac","facLoc","agedx","sex","r
   df=d[1,,drop=F] # assume casenum is always in picks
   for (i in 2:N) {
     # print(i)
+    # i=25
+    # dim(d)
     if (d$start[i]==(up<-d$start[i-1]+d$width[i-1]) ) 
       df=rbind(df,d[i,]) else {
         df=rbind(df,data.frame(start=up,width=(d$start[i]-up),names=" ",nms=" ",type="string",labs="",Levs=NA)) 

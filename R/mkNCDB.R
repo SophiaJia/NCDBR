@@ -19,11 +19,13 @@
 #'@import dplyr
 #'@import labelled
 
-mkNCDB<-function(df,ncdbHome="~/data/NCDB/data",outFile="cancDef")  {
+mkNCDB<-function(df,ncdbHome="~/data/NCDB",outFile="cancDef")  {
   # library(dplyr)
+  # library(NCDBR)
   # d=getFields()
   # df=pickFields(d)
-  # ncdbHome="~/data/NCDB/data"
+  # ncdbHome="~/data/NCDB"
+  # outFile="cancDef"
   race=sex=age=casenum=histo3=nms=type=Levs=NULL
   outF=file.path(ncdbHome,paste0(outFile,".RData")) 
   files=dir(pattern="*.txt",path=ncdbHome,full.names=TRUE)
@@ -63,7 +65,7 @@ mkNCDB<-function(df,ncdbHome="~/data/NCDB/data",outFile="cancDef")  {
   L=as.list(x$labs)
   names(L)=x$nms
   labelled::var_label(canc) <- L
-# canc
+ # canc
 #     
   (facts=which(sapply(df$Levs,function(x) class(x)[1])=="tbl_df"))
   fnms=df$nms[facts]
@@ -95,5 +97,5 @@ mkNCDB<-function(df,ncdbHome="~/data/NCDB/data",outFile="cancDef")  {
   # 
   # d$facLoc=factor(d$facLoc,levels=c("New England","Mid Altantic","South Altantic","East North Central","East South Central",
   #                                   "West North Central","West South Central","Mountain","Pacific"))
- canc
+ invisible(canc)
 }

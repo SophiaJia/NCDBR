@@ -4,6 +4,8 @@
 #' .sas file to create a tibble with information about field start and stop postions and factor levels.
 #' This tibble is then the input into \code{pickFields()}.  
 
+#'@param year  year of NCDB data files (only 2016 supported)
+
 #'@return  
 #' Tibble with short names (\code{nms}, which contain lower case letters if shortened), 
 #' medium-sized names (\code{names}, all caps, default in .sas file), long names [\code{labs}, which get mapped to 
@@ -164,7 +166,8 @@ getFields<-function(year=2016){
   nms=gsub("NO_HSD_QUAR_12","educ",nms,fixed=T)
   nms=gsub("UR_CD_13","urban",nms,fixed=T)
   nms=gsub("CROWFLY","crow",nms,fixed=T)
-  nms=gsub("CDCC_TOTAL","charlson",nms,fixed=T)
+  # nms=gsub("CDCC_TOTAL","charlson",nms,fixed=T)
+  nms=gsub("CDCC_TOTAL_BEST","charlson",nms,fixed=T)
   nms=gsub("SEQUENCE_NUMBER","seqnum",nms,fixed=T)
   nms=gsub("CLASS_OF_CASE","CoC",nms,fixed=T)
   nms=gsub("YEAR_OF_DIAGNOSIS","yrdx",nms,fixed=T)

@@ -4,7 +4,10 @@
 \alias{getFields}
 \title{Get Field Info in SAS File}
 \usage{
-getFields()
+getFields(year = 2016)
+}
+\arguments{
+\item{year}{year of NCDB data files (only 2016 supported)}
 }
 \value{
 Tibble with short names (\code{nms}, which contain lower case letters if shortened), 
@@ -15,10 +18,12 @@ whose n column holds factor numbers and val column holds string labels to which 
 \description{
 The NCDB data comes with a .sas file that helps SAS users. Here \code{getFields()} parses that 
 .sas file to create a tibble with information about field start and stop postions and factor levels.
+This tibble is then the input into \code{pickFields()}.
 }
 \note{
-The sas file needed manual editing to remove foreign characters at lines
-548, 660-662, and  698.   The fixed version is in the \file{extdata} folder.
+The 2013 sas file needed manual editing to remove foreign characters at lines
+548, 660-662, and  698.  Use library(tools); showNonASCIIfile() to nonascii of 2016 file.
+Fixed versions are in the \file{extdata} folder.
 Inspired by a function of the same name in \pkg{SEERaBomb}.
 }
 \examples{

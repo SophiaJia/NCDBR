@@ -4,10 +4,10 @@
 \alias{pickFields}
 \title{Picks Fields of Focus}
 \usage{
-pickFields(d, picks = c("casenum", "facID", "fac", "facLoc", "agedx", "sex",
-  "race", "ins", "inc", "educ", "urban", "crow", "charlson", "seqnum", "CoC",
-  "yrdx", "histo3", "stage", "d2t", "radiatn", "d2c", "chemo", "hct", "surv",
-  "alive"))
+pickFields(d, picks = c("casenum", "facID", "fac", "facLoc", "agedx",
+  "sex", "race", "ins", "inc", "educ", "urban", "crow", "charlson",
+  "seqnum", "CoC", "yrdx", "histo3", "stage", "d2t", "radiatn", "d2c",
+  "chemo", "hct", "surv", "alive"))
 }
 \arguments{
 \item{d}{Tibble produced by \code{getFields()}.}

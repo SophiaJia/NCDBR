@@ -4,7 +4,7 @@
 \alias{mkNCDB}
 \title{Make NCDB R Binary}
 \usage{
-mkNCDB(df, ncdbHome = "~/data/NCDB/data", outFile = "cancDef")
+mkNCDB(df, ncdbHome = "~/data/NCDB", outFile = "cancDef")
 }
 \arguments{
 \item{df}{Tibble returned by pickFields}
