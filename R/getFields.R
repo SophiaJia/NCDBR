@@ -18,13 +18,14 @@
 #'Inspired by a function of the same name in \pkg{SEERaBomb}.
 
 #'@examples
+#' \dontrun{
 #' library(NCDBR) 
-#' getFields()
+#' getFields() }
 #'@export
 #'@name getFields
 
 getFields<-function(year=2016){
-  # year=2016
+  year=2016
   # year=2013
   if (year==2016) {
   sas=readLines(system.file("extdata", "NCDB_PUF_Labels_2016fixed.sas", package = "NCDBR")) 
@@ -175,7 +176,17 @@ getFields<-function(year=2016){
   nms=gsub("HISTOLOGY","histo3",nms,fixed=T)
   nms=gsub("BEHAVIOR","behav",nms,fixed=T)
   nms=gsub("GRADE","grade",nms,fixed=T)
-  nms=gsub("TNM_CLIN_STAGE_GROUP","stage",nms,fixed=T)
+  nms=gsub("TUMOR_SIZE_Summary","sizeSum",nms,fixed=T)
+  nms=gsub("TUMOR_SIZE","size",nms,fixed=T)
+  nms=gsub("REGIONAL_NODES_POSITIVE","regNdPos",nms,fixed=T) #want negative
+  nms=gsub("TNM_CLIN_T","tnmCt",nms,fixed=T)
+  nms=gsub("TNM_CLIN_N","tnmCn",nms,fixed=T)
+  nms=gsub("TNM_CLIN_M","tnmCm",nms,fixed=T)
+  nms=gsub("TNM_CLIN_STAGE_GROUP","stageC",nms,fixed=T)
+  nms=gsub("TNM_PATH_T","tnmPt",nms,fixed=T)
+  nms=gsub("TNM_PATH_N","tnmPn",nms,fixed=T)
+  nms=gsub("TNM_PATH_M","tnmPm",nms,fixed=T)
+  nms=gsub("TNM_PATH_STAGE_GROUP","stageP",nms,fixed=T)
   nms=gsub("DX_RX_STARTED_DAYS","d2t",nms,fixed=T)
   nms=gsub("DX_SURG_STARTED_DAYS","d2surg",nms,fixed=T)
   nms=gsub("DX_RAD_STARTED_DAYS","d2r",nms,fixed=T)
@@ -190,9 +201,10 @@ getFields<-function(year=2016){
   nms=gsub("RX_SUMM_TRNSPLNT_ENDO","hct",nms,fixed=T)
   nms=gsub("DX_OTHER_STARTED_DAYS","d2o",nms,fixed=T)
   nms=gsub("RX_SUMM_OTHER","other",nms,fixed=T)
+  nms=gsub("PUF_30_DAY_MORT_CD","mort30",nms,fixed=T)
   nms=gsub("DX_LASTCONTACT_DEATH_MONTHS","surv",nms,fixed=T)
   nms=gsub("PUF_VITAL_STATUS","alive",nms,fixed=T)
   # data.frame(start=n1,width=lens,names,nms,type,labs,stringsAsFactors=F)
-  tibble::tibble(start=n1,width=lens,names,nms,type,labs,Levs)
+  x=tibble::tibble(start=n1,width=lens,names,nms,type,labs,Levs)
 }
 

@@ -25,7 +25,8 @@ tibble for use as the input to \code{mkNCDB()}.
 Inspired by a function of the same name in \pkg{SEERaBomb}.
 }
 \examples{
+\dontrun{
 library(NCDBR)
 d=getFields()
-pickFields(d)
+pickFields(d) }
 }

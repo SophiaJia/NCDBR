@@ -7,10 +7,11 @@
 #'@return  Tibble (big data file) saved as canc in \code{outFile}.
 #'@note  Inspired by \code{mkSEER()} in \pkg{SEERaBomb}.
 #'@examples
+#'\dontrun{
 #' library(NCDBR)
 #' d=getFields()
 #' d=pickFields(d)
-#' canc=mkNCDB(d)
+#' canc=mkNCDB(d) }
 #'@name mkNCDB
 #'@export
 #'@import tibble

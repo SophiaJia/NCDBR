@@ -7,9 +7,10 @@
 #'@return  Input dataframe with rows not wanted collapsed to strings. This output feeds into \code{mkNCDB()}.
 #'@note  Inspired by a function of the same name in \pkg{SEERaBomb}.
 #'@examples
+#'\dontrun{
 #' library(NCDBR)
 #' d=getFields()
-#' pickFields(d)
+#' pickFields(d) }
 #'@name pickFields
 #'@export
 #'
@@ -18,11 +19,11 @@
 
 pickFields<-function(d,picks=c("casenum","facID","fac","facLoc","agedx","sex","race",
                                "ins","inc","educ","urban","crow","charlson","seqnum",
-                               "CoC","yrdx","histo3","stage","d2t","radiatn","d2c",
+                               "CoC","yrdx","histo3","stageC","d2t","radiatn","d2c",
                                "chemo","hct","surv","alive")    )  {
-  # library(tidyverse)
-  # library(NCDBR)
-  # d=getFields()
+  library(tidyverse)
+  library(NCDBR)
+  d=getFields()
   # head(d,3)
   nms=NULL #kill check warning that arises 3 line downs
   (nBytesP1=sum(d$width)+1)

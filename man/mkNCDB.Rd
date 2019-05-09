@@ -23,8 +23,9 @@ Uses output of \code{pickFields()} to produce an R binary of the NCDB data.
 Inspired by \code{mkSEER()} in \pkg{SEERaBomb}.
 }
 \examples{
+\dontrun{
 library(NCDBR)
 d=getFields()
 d=pickFields(d)
-canc=mkNCDB(d)
+canc=mkNCDB(d) }
 }

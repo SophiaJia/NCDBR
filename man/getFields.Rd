@@ -27,6 +27,7 @@ Fixed versions are in the \file{extdata} folder.
 Inspired by a function of the same name in \pkg{SEERaBomb}.
 }
 \examples{
+\dontrun{
 library(NCDBR) 
-getFields()
+getFields() }
 }
