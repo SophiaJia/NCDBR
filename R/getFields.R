@@ -178,7 +178,7 @@ getFields<-function(year=2016){
   nms=gsub("GRADE","grade",nms,fixed=T)
   nms=gsub("TUMOR_SIZE_SUMMARY","sizeSum",nms,fixed=T)
   nms=gsub("TUMOR_SIZE","size",nms,fixed=T)
-  nms=gsub("REGIONAL_NODES_POSITIVE","regNdPos",nms,fixed=T) #want negative
+  nms=gsub("REGIONAL_NODES_POSITIVE","ndPos",nms,fixed=T) #want negative
   nms=gsub("TNM_CLIN_T","tnmCt",nms,fixed=T)
   nms=gsub("TNM_CLIN_N","tnmCn",nms,fixed=T)
   nms=gsub("TNM_CLIN_M","tnmCm",nms,fixed=T)
