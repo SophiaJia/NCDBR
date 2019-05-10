@@ -6,7 +6,7 @@
 \usage{
 pickFields(d, picks = c("casenum", "facID", "fac", "facLoc", "agedx",
   "sex", "race", "ins", "inc", "educ", "urban", "crow", "charlson",
-  "seqnum", "CoC", "yrdx", "histo3", "stage", "d2t", "radiatn", "d2c",
+  "seqnum", "CoC", "yrdx", "histo3", "stageC", "d2t", "radiatn", "d2c",
   "chemo", "hct", "surv", "alive"))
 }
 \arguments{

@@ -25,7 +25,7 @@
 #'@name getFields
 
 getFields<-function(year=2016){
-  year=2016
+  # year=2016
   # year=2013
   if (year==2016) {
   sas=readLines(system.file("extdata", "NCDB_PUF_Labels_2016fixed.sas", package = "NCDBR")) 
@@ -176,7 +176,7 @@ getFields<-function(year=2016){
   nms=gsub("HISTOLOGY","histo3",nms,fixed=T)
   nms=gsub("BEHAVIOR","behav",nms,fixed=T)
   nms=gsub("GRADE","grade",nms,fixed=T)
-  nms=gsub("TUMOR_SIZE_Summary","sizeSum",nms,fixed=T)
+  nms=gsub("TUMOR_SIZE_SUMMARY","sizeSum",nms,fixed=T)
   nms=gsub("TUMOR_SIZE","size",nms,fixed=T)
   nms=gsub("REGIONAL_NODES_POSITIVE","regNdPos",nms,fixed=T) #want negative
   nms=gsub("TNM_CLIN_T","tnmCt",nms,fixed=T)
@@ -205,6 +205,6 @@ getFields<-function(year=2016){
   nms=gsub("DX_LASTCONTACT_DEATH_MONTHS","surv",nms,fixed=T)
   nms=gsub("PUF_VITAL_STATUS","alive",nms,fixed=T)
   # data.frame(start=n1,width=lens,names,nms,type,labs,stringsAsFactors=F)
-  x=tibble::tibble(start=n1,width=lens,names,nms,type,labs,Levs)
+  tibble::tibble(start=n1,width=lens,names,nms,type,labs,Levs)
 }
 

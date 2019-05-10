@@ -21,9 +21,9 @@ pickFields<-function(d,picks=c("casenum","facID","fac","facLoc","agedx","sex","r
                                "ins","inc","educ","urban","crow","charlson","seqnum",
                                "CoC","yrdx","histo3","stageC","d2t","radiatn","d2c",
                                "chemo","hct","surv","alive")    )  {
-  library(tidyverse)
-  library(NCDBR)
-  d=getFields()
+  # library(tidyverse)
+  # library(NCDBR)
+  # d=getFields()
   # head(d,3)
   nms=NULL #kill check warning that arises 3 line downs
   (nBytesP1=sum(d$width)+1)

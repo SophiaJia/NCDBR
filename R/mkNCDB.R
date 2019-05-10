@@ -54,32 +54,40 @@ mkNCDB<-function(df,ncdbHome="~/data/NCDB",outFile="cancDef")  {
   # canc$surv=as.numeric(canc$surv)
   # canc$seqnum=as.numeric(canc$seqnum)
   table(canc$race)
+  canc
+  
+  
+  
+#   snms=names(canc)
+#   x=df%>%filter(nms%in%snms)
+#   L=as.list(x$labs)
+#   names(L)=x$nms
+#   labelled::var_label(canc) <- L
+#  # canc
+# #     
+#   (facts=which(sapply(df$Levs,function(x) class(x)[1])=="tbl_df"))
+#   fnms=df$nms[facts]
+#   (fnms=setdiff(fnms,c("alive")))
+#   (fnmsL=paste0(fnms,"L"))
+#   (x=df%>%filter(nms%in%fnms)%>%select(nms,Levs))
+#   L=x$Levs
+#   names(L)=x$nms
+#   dcanc=as.data.frame(canc)
+#   factor(dcanc[,fnms[1]],levels=L[[1]]$n,labels=L[[1]]$val)
+#   for (i in 1:length(fnms)) canc[,fnmsL[i]]=factor(dcanc[,fnms[i]],levels=L[[i]]$n,labels=L[[i]]$val)
+#   
+  
+  sum(duplicated(canc$casenum)) # all unique 
+  canc=canc%>%select(-casenum) # so remove casenum to save space
   canc=canc%>%
     # mutate(race=cut(race,labels=c("White","Black","Other"),breaks=c(1,2,3,100), right=F))  %>%
     # mutate(Race=cut(race,labels=c("White","African American","Other","Unknown"),breaks=c(1,2,3,99,100), right=F))  %>%
-    mutate(bwo=cut(race,labels=c("white","black","other"),breaks=c(1,2,3,100), right=F))  %>%
-    mutate(mf=factor(sex,labels=c("male","female")))
+    mutate(race=cut(race,labels=c("White","Black","Other"),breaks=c(1,2,3,100), right=F))  %>%
+    mutate(sex=factor(sex,labels=c("Male","Female")))
   # mutate(Sex=factor(sex,labels=c("Male","Female")))
-  canc
-  snms=names(canc)
-  x=df%>%filter(nms%in%snms)
-  L=as.list(x$labs)
-  names(L)=x$nms
-  labelled::var_label(canc) <- L
- # canc
-#     
-  (facts=which(sapply(df$Levs,function(x) class(x)[1])=="tbl_df"))
-  fnms=df$nms[facts]
-  (fnms=setdiff(fnms,c("alive")))
-  (fnmsL=paste0(fnms,"L"))
-  (x=df%>%filter(nms%in%fnms)%>%select(nms,Levs))
-  L=x$Levs
-  names(L)=x$nms
-  dcanc=as.data.frame(canc)
-  factor(dcanc[,fnms[1]],levels=L[[1]]$n,labels=L[[1]]$val)
-  for (i in 1:length(fnms)) canc[,fnmsL[i]]=factor(dcanc[,fnms[i]],levels=L[[i]]$n,labels=L[[i]]$val)
-  sum(duplicated(canc$casenum)) # all unique 
-  canc=canc%>%select(-casenum) # so remove casenum to save space
+  # sex and race assumed always in, so take out sexL and raceL if they are in
+  # canc=canc%>%select(-sexL,-raceL) 
+  if(length(unique(canc$cancer))==1) canc=canc%>%select(-cancer) 
   save(canc,file=outF)
   cat("NCDB data has been written to: ",outF,"\n")
   
